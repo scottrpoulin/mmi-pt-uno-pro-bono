@@ -9,8 +9,8 @@ export default function Person({ avatar, name, title, twitter, linkedin }) {
     <div className="person">
       <img className="person-avatar" src={avatar} />
       <div className="person-details">
-        <h2 className="person-name">{name}</h2>
-        <h3 className="person-title">{title}</h3>
+        <h3 className="person-name">{name}</h3>
+        <h4 className="person-title">{title}</h4>
         {linkedin && (
           <a
             className="person-social"
