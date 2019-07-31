@@ -11,15 +11,50 @@
 }
 
 .reveal .monospace {
-  font-family: monospace;
+  font-family: Roboto, Impact, sans-serif;
 }
 
 .reveal .component {
-  font-family: monospace;
+  font-family: Roboto, Impact, sans-serif;
   text-align: center;
   box-shadow: initial;
 }
 
 .reveal.component.red {
   color: #c82506;
+}
+
+img[alt='squirrel'] {
+  max-width: 500px;
+  align-content: center;
+}
+
+img[alt='ClockGif'] {
+  max-width: 500px;
+  align-content: center;
+}
+
+img[alt='clockify'] {
+  max-width: 500px;
+  align-content: center;
+}
+
+img[alt='OPI'] {
+  max-width: 400px;
+  align-self: center;
+}
+
+img[alt='MMI'] {
+  max-width: 450px;
+  align-self: center;
+}
+
+img[alt='ZF'] {
+  max-width: 750px;
+  align-self: center;
+}
+
+img[alt='stock1'] {
+  max-width: 750px;
+  align-self: center;
 }

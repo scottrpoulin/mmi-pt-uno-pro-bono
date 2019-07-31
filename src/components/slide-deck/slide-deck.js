@@ -49,6 +49,43 @@ export class SlideDeck extends Component {
             }
           ]
         });
+        let times = {};
+        Reveal.addEventListener(
+          'slidechanged',
+          function(event) {
+            console.log(times);
+            let timenow = event.timeStamp / 1000;
+            let previousSlideName = event.previousSlide.childNodes.item(0)
+              .textContent;
+            console.log(previousSlideName);
+            let dictlen = Object.keys(times).length;
+            if (dictlen === 0) {
+              console.log('Starting Timer');
+              times[
+                event.previousSlide.childNodes.item(0).textContent
+              ] = timenow;
+              times['previousTime'] = timenow;
+              times['totalTime'] = timenow;
+            } else {
+              let newtime = timenow - times['previousTime'];
+              times[
+                event.previousSlide.childNodes.item(0).textContent
+              ] = newtime;
+              times['previousTime'] = timenow;
+              times['totalTime'] = timenow;
+              console.log(timenow);
+            }
+          },
+          false
+        );
+        Reveal.addEventListener(
+          'ending',
+          function() {
+            // TODO: Sprinkle magic
+            console.log(event.timeStamp);
+          },
+          false
+        );
       }
     );
   }
@@ -82,8 +119,9 @@ export class SlideDeck extends Component {
       <div className="reveal">
         <div className="slides">
           <section data-state="title">
-            <h1>Starter Kit</h1>
-            <h2>{date}</h2>
+            <h3>Munroe-Meyer Institute Physical Therapy Department</h3>
+            <h3>Time-Keeping Project</h3>
+            <h5>July 31, 2019</h5>
           </section>
           {slides.map((deck, deckIndex) => {
             return (
@@ -113,9 +151,8 @@ export class SlideDeck extends Component {
           <section data-background="https://media.giphy.com/media/eTVG7eVNnud8Y/giphy.gif">
             <h2>Questions</h2>
           </section>
-          <section data-state="title">
+          <section data-state="ending">
             <h1>Thank you!</h1>
-            <h3>Follow us! @objectpartners</h3>
           </section>
         </div>
       </div>
