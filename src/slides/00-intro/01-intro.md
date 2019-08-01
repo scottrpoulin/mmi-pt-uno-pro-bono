@@ -1,16 +1,5 @@
-## Code slide
+### Munroe-Meyer Institute's Physical Therapy Department
 
-```jsx
-import React from 'react';
+#### Increase Efficiency in Employee Time-Keeping
 
-export function App() {
-  return <h1>Hello World</h1>;
-}
-
-```
-
----
-
-## Example slide
-
-This is some great content... I hope!
+![ClockGif](images/clock.gif)
