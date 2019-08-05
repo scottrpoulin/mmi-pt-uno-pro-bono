@@ -7,7 +7,7 @@ import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js';
 import 'prismjs/plugins/unescaped-markup/prism-unescaped-markup.js';
 
 import 'reveal.js/css/reveal.css';
-import '@objectpartners/revealjs-theme';
+import 'reveal.js/css/theme/serif.css';
 import 'prismjs/themes/prism-okaidia.css';
 import 'prismjs/plugins/unescaped-markup/prism-unescaped-markup.css';
 
@@ -54,35 +54,71 @@ export class SlideDeck extends Component {
           'slidechanged',
           function(event) {
             console.log(times);
-            let timenow = event.timeStamp / 1000;
+            let timenow = Math.round(event.timeStamp / 1000);
             let previousSlideName = event.previousSlide.childNodes.item(0)
               .textContent;
-            console.log(previousSlideName);
+            if (previousSlideName.includes('Who am I')) {
+              previousSlideName = 'Who am I';
+            }
+            if (previousSlideName.includes('Munroe-Meyer Institute')) {
+              previousSlideName = 'Intro Slide';
+            }
             let dictlen = Object.keys(times).length;
             if (dictlen === 0) {
-              console.log('Starting Timer');
-              times[
-                event.previousSlide.childNodes.item(0).textContent
-              ] = timenow;
+              times[previousSlideName] = timenow;
               times['previousTime'] = timenow;
-              times['totalTime'] = timenow;
             } else {
               let newtime = timenow - times['previousTime'];
-              times[
-                event.previousSlide.childNodes.item(0).textContent
-              ] = newtime;
+              times[previousSlideName] = newtime;
               times['previousTime'] = timenow;
-              times['totalTime'] = timenow;
-              console.log(timenow);
             }
           },
           false
         );
+
         Reveal.addEventListener(
           'ending',
-          function() {
-            // TODO: Sprinkle magic
-            console.log(event.timeStamp);
+          function(event) {
+            var tbl = document.createElement('table');
+            tbl.className = 'reveal table slide center ready';
+            var tblBody = document.createElement('tbody');
+            var header = document.createElement('th');
+            var header2 = document.createElement('th');
+            var header1cellText = document.createTextNode('Slide');
+            var header2cellText = document.createTextNode('Time (Seconds)');
+            header.append(header1cellText);
+            header2.append(header2cellText);
+            tbl.append(header);
+            tbl.append(header2);
+
+            for (var key in times) {
+              if (key !== 'previousTime') {
+                var row = document.createElement('tr');
+                var cell1 = document.createElement('td');
+                var cell2 = document.createElement('td');
+                var cell1Text = document.createTextNode(key);
+                var cell2Text = document.createTextNode(times[key]);
+                cell1.append(cell1Text);
+                cell2.append(cell2Text);
+                row.append(cell1);
+                row.append(cell2);
+                tblBody.append(row);
+              }
+            }
+            tbl.append(tblBody);
+            console.log(document.getElementById('theend').childElementCount);
+            if (document.getElementById('theend').childElementCount === 1) {
+              document.getElementById('theend').appendChild(tbl);
+            } else {
+              console.log(document.getElementById('theend').childNodes.item(1));
+              console.log(tbl);
+              document
+                .getElementById('theend')
+                .removeChild(
+                  document.getElementById('theend').childNodes.item(1)
+                );
+              document.getElementById('theend').appendChild(tbl);
+            }
           },
           false
         );
@@ -148,11 +184,8 @@ export class SlideDeck extends Component {
               </section>
             );
           })}
-          <section data-background="https://media.giphy.com/media/eTVG7eVNnud8Y/giphy.gif">
-            <h2>Questions</h2>
-          </section>
-          <section data-state="ending">
-            <h1>Thank you!</h1>
+          <section id={'theend'} data-state="ending">
+            <h3>Questions</h3>
           </section>
         </div>
       </div>
