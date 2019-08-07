@@ -11,7 +11,7 @@ import 'prismjs/themes/prism-okaidia.css';
 import 'prismjs/plugins/unescaped-markup/prism-unescaped-markup.css';
 
 import './slide-deck.css';
-import './revealjs-theme.css';
+import '@objectpartners/revealjs-theme';
 
 export class SlideDeck extends Component {
   componentDidMount() {
