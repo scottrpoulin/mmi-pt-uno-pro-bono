@@ -12,3 +12,14 @@
 .reveal table {
   font-size: 20px !important;
 }
+
+.reveal img[alt='kronos-features'] {
+  max-width: 600px;
+  align-self: center;
+}
+
+.reveal img[alt='kronos-logo'] {
+  max-width: 300px;
+  max-height: 100px;
+  align-self: center;
+}
