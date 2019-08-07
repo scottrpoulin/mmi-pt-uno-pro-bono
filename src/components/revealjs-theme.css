@@ -7,7 +7,6 @@ pre code {
   border-left: 10px solid #8d8d8d;
 }
 html:before {
-  background: url('') no-repeat right 10px center/auto 50%;
   z-index: 2;
 }
 html:after,
