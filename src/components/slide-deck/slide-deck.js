@@ -7,7 +7,7 @@ import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js';
 import 'prismjs/plugins/unescaped-markup/prism-unescaped-markup.js';
 
 import 'reveal.js/css/reveal.css';
-import '@objectpartners/revealjs-theme';
+import '@objectpartners/revealjs-theme/revealjs-theme.css';
 import 'prismjs/themes/prism-okaidia.css';
 import 'prismjs/plugins/unescaped-markup/prism-unescaped-markup.css';
 
