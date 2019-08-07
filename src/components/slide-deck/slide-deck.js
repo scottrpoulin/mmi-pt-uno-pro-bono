@@ -7,7 +7,7 @@ import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js';
 import 'prismjs/plugins/unescaped-markup/prism-unescaped-markup.js';
 
 import 'reveal.js/css/reveal.css';
-import 'reveal.js/css/theme/serif.css';
+import '@objectpartners/revealjs-theme';
 import 'prismjs/themes/prism-okaidia.css';
 import 'prismjs/plugins/unescaped-markup/prism-unescaped-markup.css';
 
@@ -46,9 +46,14 @@ export class SlideDeck extends Component {
             {
               async: true,
               src: require('reveal.js/plugin/notes/notes.js')
+            },
+            {
+              async: true,
+              src: require('reveal.js/plugin/print-pdf/print-pdf.js')
             }
           ]
         });
+        Reveal.configure({ pdfMaxPagesPerSlide: 1 });
         let times = {};
         Reveal.addEventListener(
           'slidechanged',
@@ -155,9 +160,12 @@ export class SlideDeck extends Component {
       <div className="reveal">
         <div className="slides">
           <section data-state="title">
-            <h3>Munroe-Meyer Institute Physical Therapy Department</h3>
-            <h3>Time-Keeping Project</h3>
-            <h5>July 31, 2019</h5>
+            <h2>Making Time for Efficiency</h2>
+            <h4>
+              Munroe-Meyer Institute's Physical Therapy Department Time-Keeping
+              Project
+            </h4>
+            <h3>August 7, 2019</h3>
           </section>
           {slides.map((deck, deckIndex) => {
             return (
